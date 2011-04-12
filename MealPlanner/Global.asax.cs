@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using NHibernate;
+using NHibernate.Cfg;
 
 namespace MealPlanner
 {
@@ -12,6 +11,37 @@ namespace MealPlanner
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly ISessionFactory SessionFactory = BuildSessionFactory();
+
+        public static ISession CurrentSession
+        {
+            get { return HttpContext.Current.Items["NHibernateSession"] as ISession; }
+            set { HttpContext.Current.Items["NHibernateSession"] = value; }
+        }
+
+        private static ISessionFactory BuildSessionFactory()
+        {
+            return new Configuration()
+                .Configure()
+                .BuildSessionFactory();
+        }
+
+        public MvcApplication()
+        {
+            BeginRequest += (sender, args) =>
+            {
+                CurrentSession = SessionFactory.OpenSession();
+            };
+            EndRequest += (o, eventArgs) =>
+            {
+                var session = CurrentSession;
+                if (session != null)
+                {
+                    session.Dispose();
+                }
+            };
+        }
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

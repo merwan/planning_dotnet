@@ -11,9 +11,6 @@ namespace MealPlanner.Controllers
             get { return base.Session; }
         }
 
-        public new ISession Session
-        {
-            get { return NHibernateActionFilter.CurrentSession; }
-        }
+        public new ISession Session { get; set; }
     }
 }

@@ -24,16 +24,30 @@ namespace MealPlanner.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            CurrentSession = SessionFactory.OpenSession();
+            var sessionController = filterContext.Controller as SessionController;
+            if (sessionController == null)
+            {
+                return;
+            }
+
+            sessionController.Session = SessionFactory.OpenSession();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var session = CurrentSession;
-            if (session != null)
+            var sessionController = filterContext.Controller as SessionController;
+            if (sessionController == null)
             {
-                session.Dispose();
+                return;
             }
+
+            var session = sessionController.Session;
+            if (session == null)
+            {
+                return;
+            }
+
+            session.Dispose();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using MealPlanner.Controllers;
 
 namespace MealPlanner
 {
@@ -27,6 +28,8 @@ namespace MealPlanner
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            GlobalFilters.Filters.Add(new NHibernateActionFilter());
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

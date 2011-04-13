@@ -13,7 +13,7 @@ namespace MealPlanner.Controllers
 
         public new ISession Session
         {
-            get { return MvcApplication.CurrentSession; }
+            get { return NHibernateActionFilter.CurrentSession; }
         }
     }
 }

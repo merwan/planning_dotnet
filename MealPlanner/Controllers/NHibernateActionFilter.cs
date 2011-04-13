@@ -31,6 +31,7 @@ namespace MealPlanner.Controllers
             }
 
             sessionController.Session = SessionFactory.OpenSession();
+            sessionController.Session.BeginTransaction();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -41,13 +42,27 @@ namespace MealPlanner.Controllers
                 return;
             }
 
-            var session = sessionController.Session;
-            if (session == null)
+            using (var session = sessionController.Session)
             {
-                return;
-            }
+                if (session == null)
+                {
+                    return;
+                }
 
-            session.Dispose();
+                if (!session.Transaction.IsActive)
+                {
+                    return;
+                }
+
+                if (filterContext.Exception != null)
+                {
+                    session.Transaction.Rollback();
+                }
+                else
+                {
+                    session.Transaction.Commit();
+                }
+            }
         }
     }
 }

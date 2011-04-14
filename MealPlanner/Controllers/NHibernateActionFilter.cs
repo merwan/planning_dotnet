@@ -1,7 +1,8 @@
-﻿using System.Web;
+﻿using System.Configuration;
+using System.Web;
 using System.Web.Mvc;
 using NHibernate;
-using NHibernate.Cfg;
+using Configuration = NHibernate.Cfg.Configuration;
 
 namespace MealPlanner.Controllers
 {
@@ -19,6 +20,7 @@ namespace MealPlanner.Controllers
         {
             return new Configuration()
                 .Configure()
+                .SetProperty("connection.connection_string", ConfigurationManager.ConnectionStrings["MailPlanner"].ToString())
                 .BuildSessionFactory();
         }
 

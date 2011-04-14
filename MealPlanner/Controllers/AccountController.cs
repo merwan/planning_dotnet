@@ -2,12 +2,12 @@
 using System.Web.Routing;
 using System.Web.Security;
 using MealPlanner.Models;
+using MealPlanner.Services;
 
 namespace MealPlanner.Controllers
 {
     public class AccountController : Controller
     {
-
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 
@@ -140,6 +140,5 @@ namespace MealPlanner.Controllers
         {
             return View();
         }
-
     }
 }

@@ -3,6 +3,7 @@ using System.Data.SQLite;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using MealPlanner.Core.ReadModel;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
@@ -47,7 +48,10 @@ namespace MealPlanner.Tests
         private static void GetMappings(MappingConfiguration x)
         {
             x.AutoMappings
-                .Add(AutoMap.AssemblyOf<IngredientDTO>());
+                .Add(
+                AutoMap.AssemblyOf<IngredientDTO>(new MealPlannerAutomappingConfiguration())
+                .Conventions.Add(DefaultLazy.Never())
+                );
         }
 
         private void BuildSchema(NHibernate.Cfg.Configuration cfg)

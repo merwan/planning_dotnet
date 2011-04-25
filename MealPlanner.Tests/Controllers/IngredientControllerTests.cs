@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentNHibernate.Testing;
 using MealPlanner.Controllers;
 using MealPlanner.Core.ReadModel;
 using NUnit.Framework;
@@ -19,11 +20,13 @@ namespace MealPlanner.Tests.Controllers
             Session.Save(ingredient);
             ingredient = new IngredientDTO(Guid.NewGuid(), "Tomatoe");
             Session.Save(ingredient);
+            ingredient = new IngredientDTO(Guid.NewGuid(), "Stomach");
+            Session.Save(ingredient);
         }
 
         protected override void Given()
         {
-            _controller = new IngredientController();
+            _controller = new IngredientController { Session = Session };
         }
 
         protected override void When()

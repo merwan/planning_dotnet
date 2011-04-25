@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlanner", "MealPlanner\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlanner.Tests", "MealPlanner.Tests\MealPlanner.Tests.csproj", "{7B5C9A71-0393-4AB2-8E61-14134AEAD20A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealPlanner.Core", "MealPlanner.Core\MealPlanner.Core.csproj", "{CEEF5459-43A7-4F61-938C-D2BE47A69470}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{7B5C9A71-0393-4AB2-8E61-14134AEAD20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B5C9A71-0393-4AB2-8E61-14134AEAD20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B5C9A71-0393-4AB2-8E61-14134AEAD20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEEF5459-43A7-4F61-938C-D2BE47A69470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEF5459-43A7-4F61-938C-D2BE47A69470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEF5459-43A7-4F61-938C-D2BE47A69470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEF5459-43A7-4F61-938C-D2BE47A69470}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

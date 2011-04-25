@@ -24,6 +24,14 @@ namespace MealPlanner.Tests.Controllers
                 .VerifyTheMappings();
         }
 
+        [Test]
+        public void Can_map_RecipeDTO()
+        {
+            new PersistenceSpecification<RecipeListDto>(Session)
+                .CheckProperty(x => x.Name, "20010401 184350")
+                .VerifyTheMappings();
+        }
+
         protected override void LoadData()
         {
         }
